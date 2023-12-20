@@ -1,11 +1,8 @@
-name: Deploy Lambda
+name: Deploy
 
 on:
   push:
     branches: ["main"]
-    paths:
-      - "stripe-lambda/**"
-      - ".github/workflows/deploy-lambda.yml"
   workflow_dispatch:
 
 concurrency:
