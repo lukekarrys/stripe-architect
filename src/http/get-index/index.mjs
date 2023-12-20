@@ -23,7 +23,7 @@ export async function handler (req) {
     <div class="margin-left-8">
       <div class="margin-bottom-16">
         <h1 class="margin-bottom-16">
-          Hello from an Architect Node.js function!
+          Hello from an Architect Node.js function!!!!!
         </h1>
         <p class="margin-bottom-8">
           Get started by editing this file at:
