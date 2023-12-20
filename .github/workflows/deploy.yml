@@ -1,0 +1,33 @@
+name: Deploy Lambda
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "stripe-lambda/**"
+      - ".github/workflows/deploy-lambda.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: "deploy"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      pull-requests: write
+      deployments: write
+      contents: write
+      checks: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::372019116310:role/stripe-architect-github
+          aws-region: us-west-2
+      - run: npm ci --ignore-scripts
+      - run: npx arc hydrate
+      - run: npx arc deploy --staging -v --prune
