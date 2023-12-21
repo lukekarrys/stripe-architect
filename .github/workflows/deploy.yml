@@ -26,5 +26,6 @@ jobs:
           role-to-assume: arn:aws:iam::372019116310:role/stripe-architect-github
           aws-region: us-west-2
       - run: npm ci --ignore-scripts
+      - run: npm run build
       - run: npx arc hydrate
       - run: npx arc deploy --staging -v --prune

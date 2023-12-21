@@ -1,10 +1,21 @@
 @app
 stripe-architect
 
-@http
-get /
-
 @aws
-# profile default
+runtime nodejs18.x
 region us-west-2
-architecture arm64
+# concurrency 1
+# memory 1152
+# profile default
+# timeout 30
+
+@http
+/*
+  method any
+  src server
+
+@plugins
+plugin-remix
+  src plugin-remix.js
+
+@static
